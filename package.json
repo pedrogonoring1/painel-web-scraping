@@ -24,7 +24,6 @@
     "bootstrap": "^5.2.0",
     "bootstrap-icons": "^1.9.1",
     "chart.js": "^3.1.1",
-    "mdb-angular-ui-kit": "^1.6.1",
     "ngx-bootstrap": "^8.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
