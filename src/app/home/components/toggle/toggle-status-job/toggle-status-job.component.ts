@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HomeService } from 'src/app/home/services/home.service';
+import { JobResponse } from 'src/app/home/models/responses/job';
 
 @Component({
   selector: 'app-toggle-status-job',
@@ -13,21 +15,24 @@ export class ToggleStatusJobComponent implements OnInit {
   public color: ThemePalette = 'primary';
   public disabled = false;
   public labelStatusExecucaoJob: string;
+  private jobResponse: Array<JobResponse>;
 
-  constructor(private homeService: HomeService, private spinner: NgxSpinnerService) { }
+  constructor(private homeService: HomeService, private spinner: NgxSpinnerService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.spinner.show()
     this.recuperarStatusJob()
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
   }
 
-  public alterarStatusJob(event: any) {
-    this.checked = event.checked;
+  public async alterarStatusJob(event: any) {
+    try {
+      this.checked = event.checked;
+      this.statusExecucaoJob();
+      await this.homeService.alterarStatusJob();
+      this.toastr.info(`Job ${this.labelStatusExecucaoJob}`, 'Status Alterado');
+    } catch (error) {
+      this.toastr.error('Falha ao alterar status', 'Erro')
+    }
     this.statusExecucaoJob();
   }
 
@@ -41,10 +46,15 @@ export class ToggleStatusJobComponent implements OnInit {
   }
 
   public async recuperarStatusJob() {
-    await this.homeService.recuperarStatusJob().subscribe(data => {
-      this.checked = data[0].Ativo
-      this.statusExecucaoJob()
-    })
-  }
-
+    try {
+      this.spinner.show()
+        this.jobResponse = await this.homeService.recuperarStatusJob()
+        this.checked = this.jobResponse[0].Ativo
+        this.statusExecucaoJob()
+        this.spinner.hide()
+    } catch (error) {
+      this.spinner.hide()
+      this.toastr.error('Falha ao recuperar status do Job', 'Erro')
+    }
+    }
 }

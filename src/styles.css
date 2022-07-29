@@ -1,13 +1,95 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '~@fortawesome/fontawesome-free/scss/solid.scss';
-@import '~@fortawesome/fontawesome-free/scss/regular.scss';
-@import '~@fortawesome/fontawesome-free/scss/brands.scss';
 
-@import '~mdb-angular-ui-kit/assets/scss/mdb.scss';
+
+.label-head-modal {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.modal-body {
+  padding-bottom: 0px;
+}
+
+.image-mercado {
+  width: 60px;
+  height: 60px;
+}
+
+.card-mercado {
+  width: 110px;
+  padding: 15px;
+  margin-left: 15px;
+  margin-bottom: 25px;
+}
+
+.spacin-button {
+  margin-left: 5px;
+}
+
+.badge-font {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.badge-font:hover {
+  cursor: pointer;
+}
+
+.label-filtro {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#input-nome-mercado {
+  height: 30px;
+  border-radius: 5px 0px 0px 5px;
+  padding: 10px;
+  border: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #aaaaaa;
+  background-color: #f7f7f7;
+  color: black;
+}
+
+.btn-buscar {
+  height: 31px;
+  border: none;
+  border-radius: 0px 5px 5px 0px;
+  background-color: #198754;
+  color: white;
+  font-size: 13px;
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+  background-color: rgb(12, 185, 104);
+  color: white;
+}
+
+.ng-autocomplete {
+  width:100%;
+  max-width: 600px;
+  display: table;
+  margin: 0 auto;
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  line-height: 45px;
+  height: 45px;
+  padding: 0 16px;
+  text-align: left;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+

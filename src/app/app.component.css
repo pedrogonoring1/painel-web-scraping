@@ -1,0 +1,13 @@
+.navbar-site {
+  background-color: rgb(12, 185, 104);
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.user-icon {
+  font-size: 27px;
+  color: white;
+  margin-top: 5px;
+}

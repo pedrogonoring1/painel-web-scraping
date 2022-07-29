@@ -1,0 +1,31 @@
+<button button class="btn btn-sm btn-warning" (click)="abrirModal(templateModalEditarProduto)">
+  <i class="bi bi-pencil-fill"></i>
+</button>
+
+<ng-template #templateModalEditarProduto>
+  <div class="modal-header">
+    <label class="modal-title pull-left label-head-modal">Editar Produto</label>
+    <button type="button" class="btn-close btn-sm close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formulario">
+      <div class="form-group mb-4">
+        <label for="nome-mercado" class="mb-1">Nome</label>
+        <input type="text" class="form-control" name="Nome" id="input-nome-produto" formControlName="Nome" maxlength="100" autocomplete="off">
+      </div>
+      <div class="form-group mb-4">
+        <label for="link-image" class="mb-1">Link Imagem</label>
+        <input type="text" class="form-control" name="LinkImage" id="input-link-image" formControlName="LinkImage" autocomplete="off">
+      </div>
+    <div class="row">
+      <div class="modal-footer space-footer-modal">
+        <button class="btn btn-sm btn btn-outline-danger" (click)="fecharModal()">Cancelar</button>
+          <button class="btn btn-sm btn-primary" (click)="salvarProduto()" [disabled]="formulario.invalid">Editar</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</ng-template>
+

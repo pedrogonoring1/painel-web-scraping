@@ -1,0 +1,65 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    </div>
+  </div>
+
+  <mat-card class="example-card">
+    <h1>Produtos</h1>
+    <mat-card-content>
+      <div class="row mb-2">
+        <div class="col-6">
+          <div class="">
+            <app-modal-cadastrar-produto (onFecharModal)="recuperarProdutos()"></app-modal-cadastrar-produto>
+          </div>
+        </div>
+          <div class="col-6">
+            <div class="text-end">
+              <app-consulta-produto (onEnviarMercadosResponse)="atualizarMercadosResponse($event)" (onPesquisarTodos)="recuperarProdutos()" (onTextoFiltro)="atualizarTextoFiltro($event)"></app-consulta-produto>
+            </div>
+          </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-card mt-4">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <h2>Produtos Cadastrados</h2>
+        </div>
+      </div>
+
+      <div class="row mb-3" *ngIf="exibirTextoFiltro">
+        <div class="col-12">
+          <label class="label-filtro">Filtro: </label>
+          <span class="badge rounded-pill bg-primary spacin-button badge-font" (click)="removerFiltro()">{{nomeProdutoFiltro}} <i class="bi bi-x-circle-fill"></i></span>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <div class="col-12 card card-mercado" *ngFor="let produto of produtos">
+          <div class="mb-2">
+            <img [src]="produto.LinkImage" alt="" class="image-mercado img-fluid"> <br>
+            <label class="mb-1 mt-2">{{produto.Nome}}</label>
+          </div>
+          <div class="col-12 ">
+            <div class="">
+              <app-modal-editar-produto [produtoResponse]="produto" (onFecharModal)="recuperarProdutos()"></app-modal-editar-produto>
+              <button class="btn btn-sm btn-danger spacin-button" (click)="excluirMercado(produto)"><i class="bi bi-trash3-fill"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="existeProduto">
+        <div class="col-12">
+          <h1 for="informacao"><i class="bi bi-shop"></i> Nenhum mercado encontrado :/</h1>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+
+

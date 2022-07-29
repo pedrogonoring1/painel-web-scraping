@@ -1,49 +1,21 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h2>Job Web Scraping</h2>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-12">
+  <mat-card class="example-card">
+    <h2>Job Web Scraping</h2>
+    <mat-card-content>
       <app-toggle-status-job></app-toggle-status-job>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <p>Descrição: job responsável pela atualização de preço dos produtos</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <hr>
-    </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col-12">
+      <div class="col-12 information-label">
+        <label><i class="bi bi-info-circle"></i> job responsável pela atualização de preço dos produtos</label>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
-      <h2>Gerenciar Dados</h2>
-    </div>
-  </div>
-  <div class="row mb-3">
-    <div class="col-12">
-      <button class="btn btn-md btn-primary spacing-btn"><i class="bi bi-bag"></i> Produtos</button>
-      <button class="btn btn-md btn-primary spacing-btn"><i class="bi bi-shop"></i> Mercados</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <hr>
-    </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col-12">
-      <h2>Visualizar Logs</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-12">
-      <button class="btn btn-md btn-primary spacing-btn"><i class="bi bi-card-text"></i> Ver Logs</button>
-    </div>
-  </div>
+  <mat-card class="example-card mt-4">
+    <h2>Gerenciar Dados</h2>
+    <mat-card-content>
+      <button class="btn btn-sm btn-success spacing-btn" (click)="redirecionarParaProduto()"><i class="bi bi-bag"></i> Produtos</button>
+      <button class="btn btn-sm btn-success spacing-btn" (click)="redirecionarParaMercado()"><i class="bi bi-shop"></i> Mercados</button>
+      <button class="btn btn-sm btn-success spacing-btn" (click)="redirecionarParaProdutoMercado()"><i class="bi bi-cart"></i> Produto Mercado</button>
+      <button class="btn btn-sm btn-success spacing-btn"><i class="bi bi-card-text"></i> Ver Logs</button>
+    </mat-card-content>
+  </mat-card>
 </div>

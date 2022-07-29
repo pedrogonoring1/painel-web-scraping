@@ -1,0 +1,100 @@
+<!-- <button button class="btn btn-sm btn-success pull-right" (click)="abrirModal(templateModalCadastrarProdutoMercado)" (click)="recuperarTodosProdutosTodosMercados()">
+  Cadastrar Produto Mercado
+</button>
+
+<ng-template #templateModalCadastrarProdutoMercado>
+  <div class="modal-header">
+    <label class="modal-title pull-left label-head-modal">Cadastrar Produto</label>
+    <button type="button" class="btn-close btn-sm close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formulario">
+      <div class="form-group">
+        <label for="link-image" class="mb-1">Mercado</label>
+        <select formControlName="Mercado" class="form-select" autocomplete="on">
+          <option [ngValue]="null" disabled>Selecionar...</option>
+          <option *ngFor="let mercado of mercados" [ngValue]="mercado._id">{{mercado.Nome}}</option>
+        </select>
+      </div>
+      <div class="form-group mt-3">
+        <label for="link-image" class="mb-1">Produto</label>
+        <select formControlName="Produto" class="form-select" autocomplete="on">
+          <option [ngValue]="null" disabled>Selecionar...</option>
+          <option *ngFor="let produto of produtos" [ngValue]="produto._id"> {{produto.Nome}}</option>
+        </select>
+      </div>
+      <div class="form-group mt-3 mb-4">
+        <label for="link-image" class="mb-1">Link Scraping</label>
+        <input type="text" class="form-control" name="LinkScraping" id="input-link-scraping" formControlName="Link" autocomplete="off">
+      </div>
+    <div class="row">
+      <div class="modal-footer space-footer-modal">
+        <button class="btn btn-sm btn btn-outline-danger" (click)="fecharModal()">Cancelar</button>
+        <button class="btn btn-sm btn-primary" (click)="salvarProduto()" [disabled]="formulario.invalid">Cadastrar</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</ng-template>
+ -->
+
+
+<h2 mat-dialog-title>Cadastrar Produto Mercado</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="formulario">
+
+    <div class="produto-mercado-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Mercado</mat-label>
+        <input type="text" id="sadassssd" matInput [formControl]="formControlMercado" [matAutocomplete]="mercado">
+        <mat-autocomplete #mercado="matAutocomplete" [displayWith]="displayFnMercado">
+          <mat-option *ngFor="let mercado of filteredMercados | async" [value]="mercado">
+            {{mercado.Nome}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Produto</mat-label>
+        <input type="text" id="sadassssd" matInput [formControl]="formControlProduto" [matAutocomplete]="produto">
+        <mat-autocomplete #produto="matAutocomplete" [displayWith]="displayFnProduto">
+          <mat-option *ngFor="let produto of filteredProdutos | async" [value]="produto">
+            {{produto.Nome}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Link Scraping</mat-label>
+        <textarea matInput formControlName="Link"></textarea>
+      </mat-form-field>
+    </div>
+  <!-- <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Mercado</mat-label>
+    <input type="text" name="Mercado" matInput formControlName="Mercado" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let mercado of filteredMercado | async" [value]="mercado">
+        {{mercado.Nome}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Produto</mat-label>
+    <input type="text" name="Produto" matInput formControlName="Produto" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFnProduto">
+      <mat-option *ngFor="let produto of filteredProdutos | async" [value]="produto">
+        {{produto.Nome}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field> -->
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="salvarProduto()">Cadastrar</button>
+</mat-dialog-actions>

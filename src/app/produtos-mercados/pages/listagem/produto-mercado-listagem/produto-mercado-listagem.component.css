@@ -1,0 +1,14 @@
+
+.img-produto-table {
+  width: 30px;
+}
+
+.icon-menu {
+  color: rgb(25, 168, 97);
+  margin-right: 15px;
+}
+
+.icon-menu:hover {
+  color: rgb(29, 185, 107);
+  cursor: pointer;
+}

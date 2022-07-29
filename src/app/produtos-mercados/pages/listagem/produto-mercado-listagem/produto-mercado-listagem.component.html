@@ -1,0 +1,73 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    </div>
+  </div>
+
+  <mat-card class="example-card">
+    <h1>Produto Mercados</h1>
+    <mat-card-content>
+      <div class="row mb-2">
+        <div class="col-6">
+          <div class="">
+            <button mat-raised-button color="primary" (click)="openDialog()">Cadastrar</button>
+
+            <!-- <app-modal-cadastrar-produto-mercado (onFecharModal)="recuperarProdutoMercados()"></app-modal-cadastrar-produto-mercado> -->
+          </div>
+        </div>
+          <div class="col-6">
+            <div class="text-end">
+              <!-- <app-consulta-produto (onEnviarMercadosResponse)="atualizarMercadosResponse($event)" (onPesquisarTodos)="recuperarProdutos()" (onTextoFiltro)="atualizarTextoFiltro($event)"></app-consulta-produto> -->
+            </div>
+          </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="example-card mt-4">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-12 mb-3">
+          <h2>Produtos Mercados Cadastrados</h2>
+        </div>
+      </div>
+
+      <ngx-datatable [rows]="produtosMercados" [columns]="columns" class="material" [loadingIndicator]="loadingIndicator"
+      [headerHeight]="45"
+      [footerHeight]="50"
+      [limit]="4"
+      rowHeight="auto"
+      [reorderable]="reorderable"> </ngx-datatable>
+
+      <ng-template #imgTemplate let-row="row" let-value="value" let-i="index">
+        <img [src]="value" alt="" class="img-produto-table">
+      </ng-template>
+
+      <ng-template #dropMenu let-row="row" let-value="value" let-i="index">
+        <div class="text-end">
+          <i class="bi bi-three-dots-vertical icon-menu" [matMenuTriggerFor]="menu"></i>
+        </div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon><i class="bi bi-pencil-fill"></i> Editar</mat-icon>
+
+          </button>
+          <button mat-menu-item class="text-danger">
+            <mat-icon><i class="bi bi-trash3-fill"></i> Excluir</mat-icon>
+          </button>
+        </mat-menu>
+      </ng-template>
+
+
+
+      <!-- <div class="row" *ngIf="existeProduto">
+        <div class="col-12">
+          <h1 for="informacao"><i class="bi bi-shop"></i> Nenhum mercado encontrado :/</h1>
+        </div>
+      </div> -->
+    </mat-card-content>
+  </mat-card>
+
+
+

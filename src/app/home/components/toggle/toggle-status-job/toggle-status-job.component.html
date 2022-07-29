@@ -1,4 +1,4 @@
-<mat-slide-toggle class="example-margin"
+<mat-slide-toggle class="example-margin mb-3"
   [color]="color"
   [checked]="checked"
   [disabled]="disabled"
@@ -7,3 +7,14 @@
   <label>Status: {{ labelStatusExecucaoJob }}</label>
 
 </mat-slide-toggle>
+
+<div class="mb-4" *ngIf="checked">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+
+<div class="mb-4" *ngIf="!checked">
+  <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
+
+
+

@@ -15,6 +15,10 @@ export class HomeService {
   constructor(private httpClient: HttpClient, private router: Router) {}
 
   public recuperarStatusJob() {
-    return this.httpClient.get<Array<JobResponse>>(`${this.urlBase}job`, this.httpOptions)
+    return this.httpClient.get<Array<JobResponse>>(`${this.urlBase}job`, this.httpOptions).toPromise()
+  }
+
+  public alterarStatusJob(): Promise<void>{
+    return this.httpClient.post<void>(`${this.urlBase}job/alterar-status`, this.httpOptions).toPromise()
   }
 }

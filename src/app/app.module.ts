@@ -1,56 +1,73 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './home/home.module';
-import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
-import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
-import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
-import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
-import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
-import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
-import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
-import { MdbPopoverModule } from 'mdb-angular-ui-kit/popover';
-import { MdbRadioModule } from 'mdb-angular-ui-kit/radio';
-import { MdbRangeModule } from 'mdb-angular-ui-kit/range';
-import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
-import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
-import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
-import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
-import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import { MercadoModule } from './mercados/mercado.module';
+import { ConfirmBoxConfigModule, DialogConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule } from '@costlydeveloper/ngx-awesome-popup';
+import {MatCardModule} from '@angular/material/card';
+import { ProdutoModule } from './produtos/produto.module';
+import { ProdutoMercadoModule } from './produtos-mercados/produto-mercado.module';
+import { CurrencyFormatPipe } from './shared/pipes/currency';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MatButtonModule } from '@angular/material/button';
 
-import { NgxSpinnerModule } from 'ngx-spinner';
+
+registerLocaleData(localePt);
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CurrencyFormatPipe
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     HomeModule,
-    MdbAccordionModule,
-    MdbCarouselModule,
-    MdbCheckboxModule,
-    MdbCollapseModule,
-    MdbDropdownModule,
-    MdbFormsModule,
-    MdbModalModule,
-    MdbPopoverModule,
-    MdbRadioModule,
-    MdbRangeModule,
-    MdbRippleModule,
-    MdbScrollspyModule,
-    MdbTabsModule,
-    MdbTooltipModule,
-    MdbValidationModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
-  ],
-  providers: [],
+    MercadoModule,
+    ProdutoModule,
+    ProdutoMercadoModule,
+    BrowserModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    NgxSpinnerModule.forRoot(),
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ModalModule,
+    ToastrModule.forRoot(),
+    NgxAwesomePopupModule.forRoot(), // Essential, mandatory main module.
+    DialogConfigModule.forRoot(), // Needed for instantiating dynamic components.
+    ConfirmBoxConfigModule.forRoot(), // Needed for instantiating confirm boxes.
+    ToastNotificationConfigModule.forRoot(),
+    MatCardModule,
+    MatAutocompleteModule,
+    AutocompleteLibModule,
+    NgSelectModule,
+    FormsModule,
+    MatButtonModule
+    ],
+  exports: [NgxSpinnerModule],
+  providers: [
+    BsModalService,
+    {
+      provide: LOCALE_ID,
+      useValue: "pt-BR"
+    }
+    ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
