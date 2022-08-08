@@ -22,8 +22,8 @@ export class ProdutoService {
     return this.httpClient.post<Array<ProdutoResponse>>(`${this.urlBase}produto`, produtoRequest, this.httpOptions).toPromise()
   }
 
-  public excluir(produtoResponse: ProdutoResponse): Promise<void> {
-    return this.httpClient.delete<void>(`${this.urlBase}produto/${produtoResponse._id}`, this.httpOptions).toPromise();
+  public excluir(produtoResponse: ProdutoResponse): Promise<string> {
+    return this.httpClient.delete<string>(`${this.urlBase}produto/${produtoResponse._id}`, this.httpOptions).toPromise();
   }
 
   public editar(produtoResponse: ProdutoResponse): Promise<void> {

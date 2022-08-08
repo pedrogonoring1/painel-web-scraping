@@ -5,7 +5,7 @@
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f0f0f0; }
 
 
 .label-head-modal {
@@ -20,13 +20,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .image-mercado {
   width: 60px;
   height: 60px;
-}
-
-.card-mercado {
-  width: 110px;
-  padding: 15px;
-  margin-left: 15px;
-  margin-bottom: 25px;
 }
 
 .spacin-button {
@@ -63,13 +56,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 31px;
   border: none;
   border-radius: 0px 5px 5px 0px;
-  background-color: #198754;
+  background-color: #6c757d;
   color: white;
   font-size: 13px;
 }
 
 .ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
-  background-color: rgb(12, 185, 104);
+  background-color: rgb(7, 163, 90);
   color: white;
 }
 
@@ -92,4 +85,53 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   box-sizing: border-box;
 }
 
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
 
+.example-full-width {
+  width: 100%;
+}
+
+.example-option-img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+[dir='rtl'] .example-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+.imgs-select {
+  width: 27px;
+  margin-right: 10px;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn{
+	box-shadow: none !important;
+  border: none;
+}
+
+.btn-success {
+  background-color: rgb(7, 163, 90);
+}
+
+.img-not-search {
+  width: 400px;
+  opacity: 0.5;
+  pointer-events: none;
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}

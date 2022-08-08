@@ -3,6 +3,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { MercadoResponse } from 'src/app/mercados/models/responses/mercado.response';
 import { MercadoService } from 'src/app/mercados/services/mercado.service';
+import { Clipboard } from '@angular/cdk/clipboard';
+
 
 import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
 import { Router } from '@angular/router';
@@ -24,7 +26,8 @@ export class MercadoListagemComponent implements OnInit {
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private confirmBoxEvokeService: ConfirmBoxEvokeService,
-    private readonly router: Router) { }
+    private readonly router: Router,
+    private clipboard: Clipboard) { }
 
   ngOnInit(): void {
     this.mercados = new Array<MercadoResponse>();
@@ -54,9 +57,9 @@ export class MercadoListagemComponent implements OnInit {
       await this.recuperarMercados()
       this.spinner.hide()
       this.toastr.success('Mercado Excluído', 'Sucesso')
-    } catch (error) {
+    } catch (error: any) {
       this.spinner.hide()
-      this.toastr.error('Falha ao excluir', 'Falha')
+      this.toastr.error(error.error, 'Falha')
     }
   }
 
@@ -82,4 +85,10 @@ export class MercadoListagemComponent implements OnInit {
       this.existeMercado = true
     }
   }
+
+  public copyText(textToCopy: string) {
+    this.clipboard.copy(textToCopy);
+    this.toastr.success('Id copiado', 'Sucesso')
+  }
+
 }

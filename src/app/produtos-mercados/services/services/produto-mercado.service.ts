@@ -36,7 +36,7 @@ export class ProdutoMercadoService {
     return this.httpClient.put<void>(`${this.urlBase}produto-mercado/${produtoResponse._id}`, produtoResponse, this.httpOptions).toPromise();
   }
 
-  public recuperarPorNome(nomeProduto: string): Promise<Array<ProdutoMercadoResponse>> {
-    return this.httpClient.get<Array<ProdutoMercadoResponse>>(`${this.urlBase}produto-mercado/recuperar-nome/${nomeProduto}`, this.httpOptions).toPromise();
+  public recuperarPorNome(nomeProduto: string): Promise<Array<ProdutoListagemResponse>> {
+    return this.httpClient.get<Array<ProdutoListagemResponse>>(`${this.urlBase}produto-mercado/recuperar-nome/${nomeProduto}`, this.httpOptions).toPromise();
   }
 }

@@ -42,12 +42,15 @@
         <div class="col-12 card card-mercado" *ngFor="let mercado of mercados">
           <div class="mb-2">
             <img [src]="mercado.LinkImage" alt="" class="image-mercado img-fluid"> <br>
-            <label class="mb-1 mt-2">{{mercado.Nome}}</label>
+            <label class="mb-1 mt-2">{{mercado.Nome}}</label> <br>
+
           </div>
           <div class="col-12 ">
-            <div class="">
-              <app-modal-editar-mercado [mercadoResponse]="mercado" (onFecharModal)="recuperarMercados()"></app-modal-editar-mercado>
-              <button class="btn btn-sm btn-danger spacin-button" (click)="excluirMercado(mercado)"><i class="bi bi-trash3-fill"></i></button>
+            <div class="d-flex">
+              <app-modal-editar-mercado [mercadoResponse]="mercado" (onFecharModal)="recuperarMercados()" matTooltip="Editar"></app-modal-editar-mercado>
+              <button class="btn btn-sm btn-danger spacin-button" (click)="excluirMercado(mercado)" matTooltip="Excluir"><i class="bi bi-trash3-fill"></i></button>
+              <button class="btn btn-sm btn-primary spacin-button" (click)="copyText(mercado._id)"  matTooltip="Copiar ID"
+              aria-label="Button that shows a red tooltip">ID</button>
             </div>
           </div>
         </div>

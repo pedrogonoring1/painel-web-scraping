@@ -3,6 +3,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ProdutoResponse } from 'src/app/produtos/models/responses/produto.response';
 import { ProdutoService } from 'src/app/produtos/services/produto.service';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalCadastrarProdutoComponent } from 'src/app/produtos/components/modais/modal-cadastrar-produto/modal-cadastrar-produto.component';
 
 @Component({
   selector: 'app-produto-listagem',
@@ -19,7 +22,9 @@ export class ProdutoListagemComponent implements OnInit {
   constructor(
     private produtoService: ProdutoService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private clipboard: Clipboard,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -50,9 +55,9 @@ export class ProdutoListagemComponent implements OnInit {
       await this.recuperarProdutos()
       this.spinner.hide()
       this.toastr.success('Mercado Excluído', 'Sucesso')
-    } catch (error) {
+    } catch (error: any) {
       this.spinner.hide()
-      this.toastr.error('Falha ao excluir', 'Falha')
+      this.toastr.error(error.error, 'Falha')
     }
   }
 
@@ -77,6 +82,19 @@ export class ProdutoListagemComponent implements OnInit {
     }else {
       this.existeProduto = true
     }
+  }
+
+  public openDialog() {
+    const dialogRef = this.dialog.open(ModalCadastrarProdutoComponent, {width: '500px'});
+
+    dialogRef.afterClosed().subscribe(result => {
+        this.recuperarProdutos();
+    });
+  }
+
+  public copyText(textToCopy: string) {
+    this.clipboard.copy(textToCopy);
+    this.toastr.success('Id copiado', 'Sucesso')
   }
 
 }

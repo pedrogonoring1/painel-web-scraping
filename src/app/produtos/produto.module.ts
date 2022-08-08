@@ -6,6 +6,14 @@ import { ProdutoListagemComponent } from './pages/listagens/produto-listagem/pro
 import { ConsultaProdutoComponent } from './components/consultas/consulta-produto/consulta-produto.component';
 import { ModalCadastrarProdutoComponent } from './components/modais/modal-cadastrar-produto/modal-cadastrar-produto.component';
 import { ModalEditarProdutoComponent } from './components/modais/modal-editar-produto/modal-editar-produto.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -14,6 +22,15 @@ import { ModalEditarProdutoComponent } from './components/modais/modal-editar-pr
     ModalCadastrarProdutoComponent,
     ModalEditarProdutoComponent
   ],
-  imports: [BrowserModule, ReactiveFormsModule, MatCardModule],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    FormsModule],
 })
 export class ProdutoModule {}

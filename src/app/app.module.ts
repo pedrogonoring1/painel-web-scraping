@@ -24,6 +24,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from './shared/shared.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 registerLocaleData(localePt);
@@ -32,13 +34,14 @@ registerLocaleData(localePt);
 @NgModule({
   declarations: [
     AppComponent,
-    CurrencyFormatPipe
+    CurrencyFormatPipe,
   ],
   imports: [
     AppRoutingModule,
     HomeModule,
     MercadoModule,
     ProdutoModule,
+    SharedModule,
     ProdutoMercadoModule,
     BrowserModule,
     RouterModule,
@@ -58,7 +61,9 @@ registerLocaleData(localePt);
     AutocompleteLibModule,
     NgSelectModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTooltipModule
+
     ],
   exports: [NgxSpinnerModule],
   providers: [

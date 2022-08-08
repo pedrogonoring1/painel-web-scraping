@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalEditarMercadoComponent } from './components/modais/modal-editar-mercado/modal-editar-mercado.component';
 import { ConsultaMercadoComponent } from './components/consultas/consulta-mercado/consulta-mercado.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,6 @@ import { MatCardModule } from '@angular/material/card';
     ModalEditarMercadoComponent,
     ConsultaMercadoComponent
   ],
-  imports: [BrowserModule, ReactiveFormsModule, MatCardModule],
+  imports: [BrowserModule, ReactiveFormsModule, MatCardModule, MatTooltipModule],
 })
 export class MercadoModule {}

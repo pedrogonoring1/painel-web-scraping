@@ -1,6 +1,5 @@
-import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { MercadoResponse } from 'src/app/mercados/models/responses/mercado.response';
@@ -12,6 +11,7 @@ import { ProdutoService } from 'src/app/produtos/services/produto.service';
 import { PRODUTO_MERCADO_FORMULARIO_COFING } from './config/produto-mercado-formulario.config';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { ProdutoMercadoResponse } from 'src/app/produtos-mercados/models/responses/produto-mercado.response';
 
 @Component({
   selector: 'app-modal-cadastrar-produto-mercado',
@@ -21,22 +21,19 @@ import {map, startWith} from 'rxjs/operators';
 
 export class ModalCadastrarProdutoMercadoComponent implements OnInit {
 
-  public modalRef?: BsModalRef;
   public formulario: FormGroup;
   public produtoMercadoRequest: ProdutoMercadoRequest;
   public produtos: Array<ProdutoResponse>;
   public mercados: Array<MercadoResponse>;
-  public formControlProduto = new FormControl<ProdutoResponse>(new ProdutoResponse({}));
-  public formControlMercado = new FormControl<MercadoResponse>(new MercadoResponse({}));
-  public formControlLink = new FormControl<string>('');
+  public formControlProduto = new FormControl<ProdutoResponse>(new ProdutoResponse({}), Validators.required);
+  public formControlMercado = new FormControl<MercadoResponse>(new MercadoResponse({}), Validators.required);
+  public disabled: boolean;
 
   filteredMercados: Observable<MercadoResponse[]>;
   filteredProdutos: Observable<ProdutoResponse[]>;
-
-  @Output() onFecharModal: EventEmitter<void> = new EventEmitter<void>();
+  filterFormulario: Observable<ProdutoMercadoResponse>;
 
   constructor(
-    private readonly modalService: BsModalService,
     private readonly produtoMercadoService: ProdutoMercadoService,
     private readonly produtoService: ProdutoService,
     private readonly mercadoService: MercadoService,
@@ -49,6 +46,7 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
   ngOnInit(): void {
     this.recuperarTodosProdutosTodosMercados();
     this.criarFormulario();
+    this.disabled = true;
   }
 
   private ouvirFilters() {
@@ -56,6 +54,7 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
       startWith(''),
       map(value => {
         const name = typeof value === 'string' ? value : value?.Nome;
+        this.verificarFormPreenchidoValido()
         return name ? this._filterProduto(name as string) : this.produtos.slice();
       }),
     );
@@ -64,9 +63,16 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
       startWith(''),
       map(value => {
         const name = typeof value === 'string' ? value : value?.Nome;
+        this.verificarFormPreenchidoValido()
         return name ? this._filterMercado(name as string) : this.mercados.slice();
       }),
     );
+
+    const inputForm$ = this.formulario.valueChanges.pipe()
+
+    inputForm$.subscribe(x => {
+      this.verificarFormPreenchidoValido()
+    })
   }
 
   private criarFormulario(): void {
@@ -93,7 +99,6 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
 
   public async salvarProduto() {
     try {
-      //this.spinner.show()
       const produtoMercadoFormulario = new ProdutoMercadoRequest({
         Valor: 0,
         Link: this.formulario.value.Link,
@@ -101,8 +106,6 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
         IdProduto: this.formControlProduto.value?._id,
       });
       await this.produtoMercadoService.criar(produtoMercadoFormulario);
-      this.onFecharModal.emit();
-      //this.spinner.hide();
       this.toast.success('Produto Mercado cadastrado', 'Sucesso');
 
     } catch (error) {
@@ -113,14 +116,19 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
 
   public async recuperarTodosProdutosTodosMercados() {
     try {
-      this.spinner.show()
       this.produtos = await this.produtoService.recuperar();
       this.mercados = await this.mercadoService.recuperar();
       this.ouvirFilters();
-      this.spinner.hide()
     } catch (error) {
       this.spinner.hide()
       this.toast.error('Falha ao recuperar dados', 'Falha');
     }
+  }
+
+  private verificarFormPreenchidoValido() {
+    if(this.formulario.value.Link !== '' && this.formControlMercado.value?._id !== null && this.formControlProduto.value?._id)
+      this.disabled = false;
+    else
+      this.disabled = true;
   }
 }

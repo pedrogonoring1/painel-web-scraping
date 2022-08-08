@@ -23,8 +23,8 @@ export class MercadoService {
     return this.httpClient.post<Array<MercadoResponse>>(`${this.urlBase}mercado`, mercadoResquest, this.httpOptions).toPromise()
   }
 
-  public excluir(mercadoResponse: MercadoResponse): Promise<void> {
-    return this.httpClient.delete<void>(`${this.urlBase}mercado/${mercadoResponse._id}`, this.httpOptions).toPromise();
+  public excluir(mercadoResponse: MercadoResponse): Promise<string> {
+    return this.httpClient.delete<string>(`${this.urlBase}mercado/${mercadoResponse._id}`, this.httpOptions).toPromise();
   }
 
   public editar(mercadoResponse: MercadoResponse): Promise<void> {

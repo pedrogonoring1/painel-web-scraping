@@ -1,17 +1,18 @@
+import { MercadoResponse } from "./mercado.response";
+import { ProdutoResponse } from "./produto.response";
+
 export class ProdutoListagemResponse {
-  NomeProduto: number;
-  NomeMercado: string;
+  _id: string;
   Valor: number;
-  LinkImage: string;
-  IdProduto: string;
-  IdMercado: string;
+  Link: string;
+  Produto: ProdutoResponse;
+  Mercado: MercadoResponse;
 
   constructor(params: Partial<ProdutoListagemResponse>) {
-    this.NomeProduto = params.NomeProduto!;
-    this.NomeMercado = params.NomeMercado!;
+    this._id = params._id!;
     this.Valor = params.Valor!;
-    this.LinkImage = params.LinkImage!;
-    this.IdProduto = params.IdProduto!;
-    this.IdMercado = params.IdMercado!;
+    this.Link = params.Link!;
+    this.Produto = params.Produto!;
+    this.Mercado = params.Mercado!;
   }
 }

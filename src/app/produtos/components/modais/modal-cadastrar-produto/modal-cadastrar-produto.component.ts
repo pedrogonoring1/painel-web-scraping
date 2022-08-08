@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -17,6 +19,8 @@ export class ModalCadastrarProdutoComponent implements OnInit {
   public modalRef?: BsModalRef;
   public formulario: FormGroup;
   public produtoRequest: ProdutoRequest;
+  public continuarCadastrando: boolean = false;
+  public color: ThemePalette = 'primary';
 
   @Output() onFecharModal: EventEmitter<void> = new EventEmitter<void>();
 
@@ -25,7 +29,8 @@ export class ModalCadastrarProdutoComponent implements OnInit {
     private readonly produtoService: ProdutoService,
     private readonly formBuilder: FormBuilder,
     private readonly spinner: NgxSpinnerService,
-    private readonly toast: ToastrService
+    private readonly toast: ToastrService,
+    private dialogRef: MatDialogRef<ModalCadastrarProdutoComponent>
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +66,9 @@ export class ModalCadastrarProdutoComponent implements OnInit {
   }
 
   public fecharModal() {
+    if(!this.continuarCadastrando)
+      this.dialogRef.close();
+
     this.formulario.reset();
-    this.modalRef?.hide();
   }
 }
