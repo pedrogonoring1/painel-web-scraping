@@ -32,7 +32,8 @@
   </form>
 
 </mat-dialog-content>
+<mat-checkbox class="example-margin mt-3" [(ngModel)]="continuarCadastrando" [color]="color">Continuar Cadastrando</mat-checkbox>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" (click)="salvarProduto()" [disabled]="disabled">Cadastrar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Cancelar</button>
+  <button mat-button (click)="salvarProduto()" [disabled]="disabled">Cadastrar</button>
 </mat-dialog-actions>

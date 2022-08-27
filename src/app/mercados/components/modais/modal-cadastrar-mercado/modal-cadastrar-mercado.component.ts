@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -14,17 +15,16 @@ import { MERCADO_FORMULARIO_COFNG } from './config/mercado-formulario.config';
 })
 export class ModalCadastrarMercadoComponent implements OnInit {
 
-  public modalRef?: BsModalRef;
   public formulario: FormGroup;
   public mercadoRequest: MercadoRequest;
 
   @Output() onFecharModal: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
-    private readonly modalService: BsModalService,
     private readonly mercadoService: MercadoService,
     private readonly formBuilder: FormBuilder,
     private readonly spinner: NgxSpinnerService,
+    private readonly dialogRef: MatDialogRef<ModalCadastrarMercadoComponent>,
     private readonly toast: ToastrService) { }
 
   ngOnInit(): void {
@@ -33,10 +33,6 @@ export class ModalCadastrarMercadoComponent implements OnInit {
 
   private criarFormulario(): void {
     this.formulario = this.formBuilder.group(MERCADO_FORMULARIO_COFNG);
-  }
-
-  public abrirModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-dialog-centered', ignoreBackdropClick: true, keyboard: false});
   }
 
   public async salvarMercado() {
@@ -49,8 +45,7 @@ export class ModalCadastrarMercadoComponent implements OnInit {
       });
 
       await this.mercadoService.criar(valoresFormulario);
-      this.fecharModal();
-      this.onFecharModal.emit();
+      this.dialogRef.close();
       this.spinner.hide();
       this.toast.success('Mercado cadastrado', 'Sucesso');
 
@@ -58,10 +53,5 @@ export class ModalCadastrarMercadoComponent implements OnInit {
       this.spinner.hide();
       this.toast.error('Erro ao cadastrar', 'Falha');
     }
-  }
-
-  public fecharModal() {
-    this.formulario.reset();
-    this.modalRef?.hide();
   }
 }

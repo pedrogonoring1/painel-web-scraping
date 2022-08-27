@@ -6,6 +6,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -14,6 +15,6 @@ import {MatCardModule} from '@angular/material/card';
     HomePageComponent,
     ToggleStatusJobComponent
   ],
-  imports: [MatSlideToggleModule, MatCardModule, MatProgressBarModule, ReactiveFormsModule, CommonModule],
+  imports: [MatSlideToggleModule, MatCardModule, MatProgressBarModule, ReactiveFormsModule, CommonModule, SharedModule],
 })
 export class HomeModule {}

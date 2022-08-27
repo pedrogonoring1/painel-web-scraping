@@ -5,15 +5,15 @@
     </div>
   </div>
 
-  <mat-card class="example-card">
-    <h1>Produto Mercados</h1>
+  <app-breadcrumb [breadcrumb]="bradcrumb"></app-breadcrumb>
+
+  <mat-card class="example-card mt-3">
     <mat-card-content>
-      <div class="row mb-2">
+
+      <div class="row mb-4">
         <div class="col-6">
           <div class="">
-            <button class="btn btn-sm btn-secondary" (click)="openDialog()">Cadastrar Produto Mercado</button>
-
-            <!-- <app-modal-cadastrar-produto-mercado (onFecharModal)="recuperarProdutoMercados()"></app-modal-cadastrar-produto-mercado> -->
+            <button class="btn btn-md btn-success" (click)="openDialog()">Cadastrar</button>
           </div>
         </div>
           <div class="col-6">
@@ -22,16 +22,8 @@
             </div>
           </div>
       </div>
-    </mat-card-content>
-  </mat-card>
 
-  <mat-card class="example-card mt-4">
-    <mat-card-content>
-      <div class="row">
-        <div class="col-12 mb-3">
-          <h2>Produtos Mercados Cadastrados</h2>
-        </div>
-      </div>
+
 
       <ngx-datatable [rows]="produtosMercados" [columns]="columns" class="material" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
       [headerHeight]="45"
@@ -57,15 +49,6 @@
           </button>
         </mat-menu>
       </ng-template>
-
-
-
-      <div class="row mt-5" *ngIf="existeMercado">
-        <div class="col-12 text-center">
-          <h1 for="informacao">"{{nomeMercadoFiltro}}" não encontrado :/</h1>
-          <img src="https://7classe.com/assets/media/img/no-course.gif" alt="" class="img-not-search">
-        </div>
-      </div>
     </mat-card-content>
   </mat-card>
 

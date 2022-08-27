@@ -8,6 +8,11 @@ import { ModalEditarMercadoComponent } from './components/modais/modal-editar-me
 import { ConsultaMercadoComponent } from './components/consultas/consulta-mercado/consulta-mercado.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SharedModule } from '../shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -17,6 +22,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ModalEditarMercadoComponent,
     ConsultaMercadoComponent
   ],
-  imports: [BrowserModule, ReactiveFormsModule, MatCardModule, MatTooltipModule],
+  imports: [
+    BrowserModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatTooltipModule,
+    SharedModule,
+    MatCardModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+  ],
 })
 export class MercadoModule {}

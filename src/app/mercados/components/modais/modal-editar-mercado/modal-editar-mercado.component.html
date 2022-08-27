@@ -1,35 +1,30 @@
-<button button class="btn btn-sm btn-warning spacin-button" (click)="abrirModal(templateModalEditarMercado)">
-  <i class="bi bi-pencil-fill"></i>
-</button>
+<h2 mat-dialog-title>Editar Mercado</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="formulario">
 
-<ng-template #templateModalEditarMercado>
-  <div class="modal-header">
-    <label class="modal-title pull-left label-head-modal">Editar Mercado</label>
-    <button type="button" class="btn-close btn-sm close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-      <span aria-hidden="true" class="visually-hidden">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="formulario">
-      <div class="form-group mb-4">
-        <label for="nome-mercado" class="mb-1">Nome</label>
-        <input type="text" class="form-control" name="Nome" id="input-nome-mercado-edicao" formControlName="Nome" maxlength="100" autocomplete="off">
-      </div>
-      <div class="form-group mb-4">
-        <label for="link-image" class="mb-1">Link Imagem</label>
-        <input type="text" class="form-control" name="LinkImage" id="input-link-image" formControlName="LinkImage" autocomplete="off">
-      </div>
-      <div class="form-group">
-        <label for="url-site" class="mb-1">URL Site</label>
-        <input type="text" class="form-control" name="UrlSite" id="input-url-site" formControlName="UrlSite" autocomplete="off">
-      </div>
-    <div class="row">
-      <div class="modal-footer mt-4 space-footer-modal">
-        <button class="btn btn-sm btn btn-outline-danger" (click)="fecharModal()">Cancelar</button>
-          <button class="btn btn-sm btn-primary" (click)="salvarMercado()" [disabled]="formulario.invalid">Editar</button>
-      </div>
+    <div class="produto-mercado-form">
+
+      <mat-form-field class="example-full-width mb-2" appearance="legacy">
+        <mat-label>Nome</mat-label>
+        <input type="text" id="valor" matInput formControlName="Nome">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="legacy">
+        <mat-label>URL Imagem</mat-label>
+        <textarea matInput formControlName="LinkImage"></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="legacy">
+        <mat-label>URL Site</mat-label>
+        <textarea matInput formControlName="UrlSite"></textarea>
+      </mat-form-field>
     </div>
-    </form>
-  </div>
-</ng-template>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  <button mat-button (click)="salvarMercado()" [disabled]="formulario.invalid">Editar</button>
+</mat-dialog-actions>
 

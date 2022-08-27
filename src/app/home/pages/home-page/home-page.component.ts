@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { Route, Router } from '@angular/router';
+import { Breadcrumb } from 'src/app/shared/breadcrumb/models/breadcrumb';
 
 @Component({
   selector: 'app-home-page',
@@ -9,9 +10,19 @@ import { Route, Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
 
+  public bradcrumb: Breadcrumb;
+
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.instanciarBreadcrumb();
+  }
+
+  private instanciarBreadcrumb() {
+    this.bradcrumb = new Breadcrumb({
+      tituloPagina: 'Início',
+      paths: [{nome: '/inicio', link: '/', ativo: true}]
+    })
   }
 
   public redirecionarParaMercado(){

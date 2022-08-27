@@ -1,12 +1,53 @@
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Carregando </p></ngx-spinner>
 
-<nav class="navbar mb-5 navbar-site">
-  <div class="container">
-    <a class="navbar-brand" href="#"><i class="bi bi-box-fill"></i> Portal Web Scraping</a>
-    <div class="text-end mt-1">
-      <a class="user-icon" href="#"><i class="bi bi-person-circle"></i></a>
-    </div>
-  </div>
-</nav>
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 navbar-site">
+          <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+              <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none mt-4">
+                  <span class="titulo-menu">Portal Scraping</span>
+              </a>
+              <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start mt-4" id="menu">
+                  <li class="nav-item">
+                      <a href="#" class="nav-link align-middle px-0 menu-sidemenu">
+                        <i class="bi bi-house-fill margin-icon"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                      </a>
+                  </li>
+                  <li>
+                      <a href="/produto" class="nav-link px-0 align-middle menu-sidemenu mt-3">
+                        <i class="bi bi-basket3-fill margin-icon"></i> <span class="ms-1 d-none d-sm-inline">Produtos</span></a>
+                  </li>
+                  <li>
+                    <a href="/mercado" class="nav-link px-0 align-middle menu-sidemenu mt-3">
+                      <i class="bi bi-briefcase-fill margin-icon"></i> <span class="ms-1 d-none d-sm-inline">Mercados</span></a>
+                </li>
+                <li>
+                  <a href="/produto-mercado" class="nav-link px-0 align-middle menu-sidemenu mt-3">
+                    <i class="bi bi-cart-fill margin-icon"></i> <span class="ms-1 d-none d-sm-inline">Produto Mercado</span></a>
+               </li>
+               <li>
+                <a href="/produto-mercado" class="nav-link px-0 align-middle menu-sidemenu mt-3">
+                  <i class="bi bi-file-text-fill margin-icon"></i> <span class="ms-1 d-none d-sm-inline">Ver Logs</span></a>
+              </li>
+              </ul>
+              <hr>
+              <div class="dropdown pb-4">
+                  <a class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="https://media-exp1.licdn.com/dms/image/C4E03AQGIJfsWxGuOmQ/profile-displayphoto-shrink_200_200/0/1607122611179?e=1666828800&v=beta&t=8CR0v3xrAqHkN4AV-5SX9rWulGkVJ4t-rJtHzPsFAOc" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                      <span class="d-none d-sm-inline mx-1">Pedro Gonoring</span>
+                  </a>
+              </div>
+          </div>
+      </div>
+      <div class="col py-3 mt-5">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+

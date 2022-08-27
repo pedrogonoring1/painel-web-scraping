@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -31,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    SharedModule,
     FormsModule],
 })
 export class ProdutoModule {}

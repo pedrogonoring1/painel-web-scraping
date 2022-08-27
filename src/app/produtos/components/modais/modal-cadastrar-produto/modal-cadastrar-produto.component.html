@@ -1,4 +1,5 @@
 <h2 mat-dialog-title>Cadastrar Produto</h2>
+
 <mat-dialog-content class="mat-typography">
 <form [formGroup]="formulario">
   <div class="produto-mercado-form">
@@ -18,11 +19,11 @@
 
 </form>
 </mat-dialog-content>
-
+<mat-checkbox class="example-margin mt-3" [(ngModel)]="continuarCadastrando" [color]="color">Continuar Cadastrando</mat-checkbox>
 <mat-dialog-actions align="end">
-  <mat-checkbox class="example-margin" [(ngModel)]="continuarCadastrando" [color]="color">Continuar Cadastrando</mat-checkbox>
-  <button mat-button mat-dialog-close >Cancelar</button>
-  <button mat-button (click)="salvarProduto()" [disabled]="formulario.invalid">Cadastrar</button>
+
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+  <button mat-button (click)="salvarProduto()" [disabled]="formulario.invalid">Salvar</button>
 </mat-dialog-actions>
 
 

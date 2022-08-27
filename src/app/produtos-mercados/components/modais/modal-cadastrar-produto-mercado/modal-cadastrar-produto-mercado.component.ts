@@ -12,6 +12,8 @@ import { PRODUTO_MERCADO_FORMULARIO_COFING } from './config/produto-mercado-form
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { ProdutoMercadoResponse } from 'src/app/produtos-mercados/models/responses/produto-mercado.response';
+import { MatDialogRef } from '@angular/material/dialog';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-modal-cadastrar-produto-mercado',
@@ -28,6 +30,8 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
   public formControlProduto = new FormControl<ProdutoResponse>(new ProdutoResponse({}), Validators.required);
   public formControlMercado = new FormControl<MercadoResponse>(new MercadoResponse({}), Validators.required);
   public disabled: boolean;
+  public continuarCadastrando: boolean = false;
+  public color: ThemePalette = 'primary';
 
   filteredMercados: Observable<MercadoResponse[]>;
   filteredProdutos: Observable<ProdutoResponse[]>;
@@ -39,7 +43,8 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
     private readonly mercadoService: MercadoService,
     private readonly formBuilder: FormBuilder,
     private readonly spinner: NgxSpinnerService,
-    private readonly toast: ToastrService
+    private readonly toast: ToastrService,
+    private dialogRef: MatDialogRef<ModalCadastrarProdutoMercadoComponent>
   )
   { }
 
@@ -107,7 +112,7 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
       });
       await this.produtoMercadoService.criar(produtoMercadoFormulario);
       this.toast.success('Produto Mercado cadastrado', 'Sucesso');
-
+      this.fecharModal();
     } catch (error) {
       this.spinner.hide();
       this.toast.error('Erro ao cadastrar', 'Falha');
@@ -130,5 +135,16 @@ export class ModalCadastrarProdutoMercadoComponent implements OnInit {
       this.disabled = false;
     else
       this.disabled = true;
+  }
+
+  public fecharModal() {
+    this.formulario.reset();
+    this.formulario.get('Link')?.setValue('')
+    this.formulario.get('Valor')?.setValue('')
+    this.formControlMercado.setValue(new MercadoResponse({}))
+    this.formControlProduto.setValue(new ProdutoResponse({}))
+
+    if(!this.continuarCadastrando)
+      this.dialogRef.close(true);
   }
 }

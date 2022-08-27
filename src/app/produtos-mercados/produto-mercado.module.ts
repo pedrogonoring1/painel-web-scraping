@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ConsultaProdutoMercadoComponent } from './components/consultas/consulta-produto-mercado/consulta-produto-mercado.component';
+import { SharedModule } from '../shared/shared.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -22,7 +24,8 @@ import { ConsultaProdutoMercadoComponent } from './components/consultas/consulta
     ProdutoMercadoListagemComponent,
         ModalCadastrarProdutoMercadoComponent,
         ModalEditarProdutoMercadoComponent,
-        ConsultaProdutoMercadoComponent
+        ConsultaProdutoMercadoComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,9 @@ import { ConsultaProdutoMercadoComponent } from './components/consultas/consulta
     MatInputModule,
     FormsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule,
+    MatCheckboxModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

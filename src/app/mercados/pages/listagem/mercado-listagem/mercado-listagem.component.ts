@@ -4,11 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { MercadoResponse } from 'src/app/mercados/models/responses/mercado.response';
 import { MercadoService } from 'src/app/mercados/services/mercado.service';
 import { Clipboard } from '@angular/cdk/clipboard';
-
-
-import { ConfirmBoxEvokeService } from '@costlydeveloper/ngx-awesome-popup';
-import { Router } from '@angular/router';
-
+import { Breadcrumb } from 'src/app/shared/breadcrumb/models/breadcrumb';
+import { ModalCadastrarMercadoComponent } from 'src/app/mercados/components/modais/modal-cadastrar-mercado/modal-cadastrar-mercado.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmComponent } from 'src/app/shared/dialog/confirm/confirm.component';
+import { ModalEditarMercadoComponent } from 'src/app/mercados/components/modais/modal-editar-mercado/modal-editar-mercado.component';
 
 @Component({
   selector: 'app-mercado-listagem',
@@ -21,20 +21,29 @@ export class MercadoListagemComponent implements OnInit {
   public existeMercado: boolean;
   public nomeMercadoFiltro: string;
   public exibirTextoFiltro: boolean;
+  public bradcrumb: Breadcrumb;
 
   constructor(private mercadoService: MercadoService,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
-    private confirmBoxEvokeService: ConfirmBoxEvokeService,
-    private readonly router: Router,
-    private clipboard: Clipboard) { }
+    private readonly toastr: ToastrService,
+    private readonly spinner: NgxSpinnerService,
+    private readonly clipboard: Clipboard,
+    private readonly dialog: MatDialog
+    ) { }
 
   ngOnInit(): void {
+    this.instanciarBreadcrumb();
     this.mercados = new Array<MercadoResponse>();
     this.existeMercado = false;
     this.recuperarMercados();
     this.nomeMercadoFiltro = "";
     this.exibirTextoFiltro = false;
+  }
+
+  private instanciarBreadcrumb() {
+    this.bradcrumb = new Breadcrumb({
+      tituloPagina: 'Mercados',
+      paths: [{nome: '/home', link: '/', ativo: true}, {nome: '/mercados', link: '/mercado', ativo: false}]
+    })
   }
 
   public async recuperarMercados() {
@@ -84,6 +93,34 @@ export class MercadoListagemComponent implements OnInit {
     }else {
       this.existeMercado = true
     }
+  }
+
+  public openDialogCadastro() {
+    const dialogRef = this.dialog.open(ModalCadastrarMercadoComponent, {width: '500px'});
+
+    dialogRef.afterClosed().subscribe(result => {
+        this.recuperarMercados();
+    });
+  }
+
+  public abrirDialogConfirm(mercado: any) {
+    const dialogRef = this.dialog.open(ConfirmComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result)
+        this.excluirMercado(mercado)
+    });
+  }
+
+  public abrirDialogEdit(mercado: any) {
+    const dialogRef = this.dialog.open(ModalEditarMercadoComponent, {
+      data: mercado, width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result)
+        this.recuperarMercados()
+    });
   }
 
   public copyText(textToCopy: string) {

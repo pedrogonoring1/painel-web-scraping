@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="d-flex">
+        <div *ngFor="let rota of breadcrumb.paths" class="d-flex">
+          <a [href]="rota.link" class="link-bradcrumb">{{rota.nome}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <div class="col-12">
+      <label class="title-page">{{ breadcrumb.tituloPagina }}</label>
+    </div>
+  </div>
+</div>

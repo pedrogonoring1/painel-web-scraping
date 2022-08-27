@@ -1,0 +1,11 @@
+.title-page {
+  font-size: 30px;
+  font-weight: 500;
+  color: rgb(7, 163, 90);
+}
+
+.link-bradcrumb {
+  margin-right: 7px;
+  color: rgb(19, 185, 108);
+  text-decoration: none;
+}

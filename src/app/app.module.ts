@@ -26,6 +26,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from './shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 registerLocaleData(localePt);
@@ -62,8 +63,8 @@ registerLocaleData(localePt);
     NgSelectModule,
     FormsModule,
     MatButtonModule,
-    MatTooltipModule
-
+    MatTooltipModule,
+    MatSidenavModule
     ],
   exports: [NgxSpinnerModule],
   providers: [

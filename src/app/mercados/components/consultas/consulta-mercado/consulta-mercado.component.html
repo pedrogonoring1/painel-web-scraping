@@ -1,6 +1,6 @@
 <form [formGroup]="formulario">
-  <input type="text" placeholder="pesquisar..." name="Nome" id="input-nome-mercado" formControlName="Nome" class="" [autocomplete]="true">
-  <button class="btn-buscar" (click)="consultarMercados()">Buscar</button>
+  <input type="search" placeholder="pesquisar..." name="Nome" id="input-nome-mercado" formControlName="Nome" class="" [autocomplete]="true">
+  <button class="btn btn-md btn-success" (click)="consultarMercados()"><i class="bi bi-search"></i></button>
 </form>
 
 

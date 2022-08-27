@@ -5,13 +5,14 @@
     </div>
   </div>
 
-  <mat-card class="example-card">
-    <h1>Mercados</h1>
+  <app-breadcrumb [breadcrumb]="bradcrumb"></app-breadcrumb>
+
+  <mat-card class="example-card mt-4">
     <mat-card-content>
-      <div class="row mb-2">
+      <div class="row mb-3">
         <div class="col-6">
           <div class="">
-            <app-modal-cadastrar-mercado (onFecharModal)="recuperarMercados()"></app-modal-cadastrar-mercado>
+            <button class="btn btn-md btn-success" (click)="openDialogCadastro()">Cadastrar</button>
           </div>
         </div>
           <div class="col-6">
@@ -20,16 +21,8 @@
             </div>
           </div>
       </div>
-    </mat-card-content>
-  </mat-card>
 
-  <mat-card class="example-card mt-4">
-    <mat-card-content>
-      <div class="row">
-        <div class="col-12 mb-3">
-          <h2>Mercados Cadastrados</h2>
-        </div>
-      </div>
+      <hr>
 
       <div class="row mb-3" *ngIf="exibirTextoFiltro">
         <div class="col-12">
@@ -47,8 +40,8 @@
           </div>
           <div class="col-12 ">
             <div class="d-flex">
-              <app-modal-editar-mercado [mercadoResponse]="mercado" (onFecharModal)="recuperarMercados()" matTooltip="Editar"></app-modal-editar-mercado>
-              <button class="btn btn-sm btn-danger spacin-button" (click)="excluirMercado(mercado)" matTooltip="Excluir"><i class="bi bi-trash3-fill"></i></button>
+              <button button class="btn btn-sm btn-warning spacin-button" (click)="abrirDialogEdit(mercado)" matTooltip="Editar"><i class="bi bi-pencil-fill"></i></button>
+              <button class="btn btn-sm btn-danger spacin-button" (click)="abrirDialogConfirm(mercado)" matTooltip="Excluir"><i class="bi bi-trash3-fill"></i></button>
               <button class="btn btn-sm btn-primary spacin-button" (click)="copyText(mercado._id)"  matTooltip="Copiar ID"
               aria-label="Button that shows a red tooltip">ID</button>
             </div>
@@ -57,8 +50,9 @@
       </div>
 
       <div class="row" *ngIf="existeMercado">
-        <div class="col-12">
-          <h1 for="informacao"><i class="bi bi-shop"></i> Nenhum mercado encontrado :/</h1>
+        <div class="col-12 text-center">
+          <h1 for="informacao">"{{nomeMercadoFiltro}}" não encontrado 😢</h1>
+          <img src="https://7classe.com/assets/media/img/no-course.gif" alt="" class="img-not-search">
         </div>
       </div>
     </mat-card-content>

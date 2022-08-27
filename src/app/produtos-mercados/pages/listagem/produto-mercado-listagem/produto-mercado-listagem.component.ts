@@ -14,6 +14,7 @@ import { ModalCadastrarProdutoMercadoComponent } from 'src/app/produtos-mercados
 import { ConfirmComponent } from 'src/app/shared/dialog/confirm/confirm.component';
 import { ModalEditarProdutoMercadoComponent } from 'src/app/produtos-mercados/components/modais/modal-editar-produto-mercado/modal-editar-produto-mercado.component';
 import { ProdutoMercadoResponse } from 'src/app/produtos-mercados/models/responses/produto-mercado.response';
+import { Breadcrumb } from 'src/app/shared/breadcrumb/models/breadcrumb';
 
 export interface User {
   name: string;
@@ -37,6 +38,7 @@ export class ProdutoMercadoListagemComponent implements OnInit {
   public existeMercado: boolean;
   public nomeMercadoFiltro: string;
   public exibirTextoFiltro: boolean;
+  public bradcrumb: Breadcrumb;
 
   myControl = new FormControl<string | User>('');
   options: User[] = [{name: 'Arroz Sepé'}, {name: 'Shelley'}, {name: 'Coca Cola'}];
@@ -50,11 +52,19 @@ export class ProdutoMercadoListagemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.instanciarBreadcrumb();
     this.recuperarProdutoMercados();
     this.configColumns();
     this.nomeMercadoFiltro = "";
     this.exibirTextoFiltro = false;
     this.existeMercado = false;
+  }
+
+  private instanciarBreadcrumb() {
+    this.bradcrumb = new Breadcrumb({
+      tituloPagina: 'Produto Mercado',
+      paths: [{nome: '/home', link: '/', ativo: true}, {nome: '/produto-mercado', link: '/produto-mercado', ativo: false}]
+    })
   }
 
   openDialog() {

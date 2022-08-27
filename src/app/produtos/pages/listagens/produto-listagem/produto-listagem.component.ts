@@ -6,6 +6,9 @@ import { ProdutoService } from 'src/app/produtos/services/produto.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCadastrarProdutoComponent } from 'src/app/produtos/components/modais/modal-cadastrar-produto/modal-cadastrar-produto.component';
+import { Breadcrumb } from 'src/app/shared/breadcrumb/models/breadcrumb';
+import { ConfirmComponent } from 'src/app/shared/dialog/confirm/confirm.component';
+import { ModalEditarProdutoComponent } from 'src/app/produtos/components/modais/modal-editar-produto/modal-editar-produto.component';
 
 @Component({
   selector: 'app-produto-listagem',
@@ -18,6 +21,7 @@ export class ProdutoListagemComponent implements OnInit {
   public existeProduto: boolean;
   public nomeProdutoFiltro: string;
   public exibirTextoFiltro: boolean;
+  public bradcrumb: Breadcrumb;
 
   constructor(
     private produtoService: ProdutoService,
@@ -28,11 +32,19 @@ export class ProdutoListagemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.instanciarBreadcrumb();
     this.produtos = new Array<ProdutoResponse>();
     this.existeProduto = false;
     this.recuperarProdutos();
     this.nomeProdutoFiltro = "";
     this.exibirTextoFiltro = false;
+  }
+
+  private instanciarBreadcrumb() {
+    this.bradcrumb = new Breadcrumb({
+      tituloPagina: 'Produtos',
+      paths: [{nome: '/home', link: '/', ativo: true}, {nome: '/produto', link: '/produto', ativo: false}]
+    })
   }
 
   public async recuperarProdutos() {
@@ -89,6 +101,26 @@ export class ProdutoListagemComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         this.recuperarProdutos();
+    });
+  }
+
+  public abrirDialogConfirm(produto: any) {
+    const dialogRef = this.dialog.open(ConfirmComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result)
+        this.excluirMercado(produto)
+    });
+  }
+
+  public abrirDialogEdit(produto: any) {
+    const dialogRef = this.dialog.open(ModalEditarProdutoComponent, {
+      data: produto, width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result)
+        this.recuperarProdutos()
     });
   }
 
