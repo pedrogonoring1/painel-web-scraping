@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+    </div>
+  </div>
+  <app-breadcrumb [breadcrumb]="bradcrumb"></app-breadcrumb>
+  <mat-card class="example-card mt-3">
+    <mat-card-content>
+      <div class="row mb-4">
+        <div class="col-6">
+          <div class="">
+          </div>
+        </div>
+          <div class="col-6">
+            <div class="text-end">
+              <app-consulta-logs
+                (onEnviarLogsResponse)="atualizarLogsResponse($event)"
+                (onPesquisarTodos)="recuperarLogs()"
+                (onTextoFiltro)="atualizarTextoFiltro($event)"
+              >
+            </app-consulta-logs>
+            </div>
+          </div>
+      </div>
+      <ngx-datatable
+        [rows]="logsResponse"
+        [columns]="columns"
+        class="material"
+        [loadingIndicator]="loadingIndicator"
+        [columnMode]="'force'"
+        [headerHeight]="45"
+        [footerHeight]="50"
+        [limit]="6"
+        rowHeight="auto"
+        [reorderable]="reorderable"
+      >
+     </ngx-datatable>
+  </mat-card-content>
+</mat-card>

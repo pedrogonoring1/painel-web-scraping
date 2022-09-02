@@ -37,4 +37,8 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/produto-mercado']);
   }
 
+  public redirecionarParaLogs() {
+    this.router.navigate(['/logs']);
+  }
+
 }

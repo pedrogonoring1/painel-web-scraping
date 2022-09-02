@@ -8,12 +8,10 @@ import { CurrencyFormatPipe } from 'src/app/shared/pipes/currency';
 
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalCadastrarProdutoMercadoComponent } from 'src/app/produtos-mercados/components/modais/modal-cadastrar-produto-mercado/modal-cadastrar-produto-mercado.component';
 import { ConfirmComponent } from 'src/app/shared/dialog/confirm/confirm.component';
 import { ModalEditarProdutoMercadoComponent } from 'src/app/produtos-mercados/components/modais/modal-editar-produto-mercado/modal-editar-produto-mercado.component';
-import { ProdutoMercadoResponse } from 'src/app/produtos-mercados/models/responses/produto-mercado.response';
 import { Breadcrumb } from 'src/app/shared/breadcrumb/models/breadcrumb';
 
 export interface User {
@@ -31,17 +29,16 @@ export class ProdutoMercadoListagemComponent implements OnInit {
   @ViewChild('dropMenu') dropMenu: TemplateRef<any>;
 
   public produtosMercados: Array<ProdutoListagemResponse>;
-  loadingIndicator = true;
-  reorderable = true;
-  ColumnMode = ColumnMode;
-  columns: Array<{}>;
+  public loadingIndicator = true;
+  public reorderable = true;
+  public ColumnMode = ColumnMode;
+  public columns: Array<{}>;
   public existeMercado: boolean;
   public nomeMercadoFiltro: string;
   public exibirTextoFiltro: boolean;
   public bradcrumb: Breadcrumb;
 
   myControl = new FormControl<string | User>('');
-  options: User[] = [{name: 'Arroz Sepé'}, {name: 'Shelley'}, {name: 'Coca Cola'}];
   filteredOptions: Observable<User[]>;
 
   constructor(

@@ -9,3 +9,7 @@
   color: rgb(19, 185, 108);
   text-decoration: none;
 }
+
+.link-bradcrumb:hover {
+  color: rgb(78, 238, 163);
+}

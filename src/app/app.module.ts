@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt';
 import { MercadoModule } from './mercados/mercado.module';
 import { ConfirmBoxConfigModule, DialogConfigModule, NgxAwesomePopupModule, ToastNotificationConfigModule } from '@costlydeveloper/ngx-awesome-popup';
 import {MatCardModule} from '@angular/material/card';
@@ -27,9 +26,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { SharedModule } from './shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { LogsModule } from './logs/logs.module';
 
+import localeBr from '@angular/common/locales/pt';
 
-registerLocaleData(localePt);
+registerLocaleData(localeBr, 'pt')
+
 
 
 @NgModule({
@@ -44,6 +46,7 @@ registerLocaleData(localePt);
     ProdutoModule,
     SharedModule,
     ProdutoMercadoModule,
+    LogsModule,
     BrowserModule,
     RouterModule,
     BrowserAnimationsModule,
@@ -69,10 +72,7 @@ registerLocaleData(localePt);
   exports: [NgxSpinnerModule],
   providers: [
     BsModalService,
-    {
-      provide: LOCALE_ID,
-      useValue: "pt-BR"
-    }
+    { provide: LOCALE_ID, useValue: 'pt' }
     ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
